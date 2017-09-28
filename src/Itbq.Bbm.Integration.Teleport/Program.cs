@@ -19,21 +19,25 @@ namespace Itbq.Bbm.Integration.Teleport
                     { "error", "Заявка не принята" }
                 };
 
-        public static void Main() => SendAsync();
-
-        private static async void SendAsync()
+        public static void Main()
         {
             while (true)
             {
-                var request = ObtainData();
-                var response = await TeleportAgent.SendAsync(request).ConfigureAwait(false);
-                Console.WriteLine(
-                    ResponseMessageMap.TryGetValue(response.Content.ToString(), out string message)
-                        ? message
-                        : "Неизвестный ответ сервера!");
-                await Task.Delay(Settings.Default.SendDelay);
+                SendAsync().Wait();
             }
             // ReSharper disable once FunctionNeverReturns
+        }
+
+        private static async Task SendAsync()
+        {
+            var request = ObtainData();
+            var response = await TeleportAgent.SendAsync(request);
+            var content = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(
+                ResponseMessageMap.TryGetValue(content, out var message)
+                    ? message
+                    : "Неизвестный ответ сервера!");
+            await Task.Delay(Settings.Default.SendDelay);
         }
 
         private static Request.Request ObtainData()
@@ -53,7 +57,7 @@ namespace Itbq.Bbm.Integration.Teleport
                         ResidentialCity = "Зеленоград",
                         RegistrationRegion = "Москва",
                         RegistrationCity = "Зеленоград"
-                     };
+                    };
         }
     }
 }

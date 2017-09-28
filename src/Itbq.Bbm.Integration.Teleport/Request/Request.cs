@@ -75,6 +75,6 @@ namespace Itbq.Bbm.Integration.Teleport.Request
             return JsonConvert.SerializeObject(this, settings);
         }
 
-        public string ToXml() => JsonConvert.DeserializeXNode(ToJson(), "request").ToString();
+        public string ToXml() => JsonConvert.DeserializeXNode(ToJson(), "request").ToString(SaveOptions.DisableFormatting);
     }
 }
