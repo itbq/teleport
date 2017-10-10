@@ -11,5 +11,8 @@
     <Setting Name="TeleportUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://gate.vteleport.ru/sendrequestxml</Value>
     </Setting>
+    <Setting Name="BbmConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.\MSSQLSERVER;catalog=*********;Uesr ID=***********; Password=*********;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -49,5 +49,14 @@ namespace Itbq.Bbm.Integration.Teleport.Properties {
                 return ((string)(this["TeleportUrl"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\MSSQLSERVER;catalog=*********;Uesr ID=***********; Password=*********;")]
+        public string BbmConnectionString {
+            get {
+                return ((string)(this["BbmConnectionString"]));
+            }
+        }
     }
 }
